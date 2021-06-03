@@ -1,0 +1,13 @@
+<html>
+    <!--
+      has to be triggered before the admin requests the screenshot
+      so that the redirect happens just before we receive the screenshot
+      but there is enough time left so that we can control the admin page
+      -->
+  <script>
+    setTimeout(() => {
+      window.location = "http://127.0.0.1:9222/json/list";
+    }, 1000 * 8);
+  </script>
+</html>
+

